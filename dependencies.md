@@ -1,9 +1,8 @@
 [Back to Index](/README.md)
 
 # Dependencies
-LIMP is Python based. It's tested in small number of environments running Python 3.5+.
-Since LIMP is originally built for Masaar use-cases, it's based on `MongoDB` the database engine of choice by Masaar, as well as it requires `Twilio` SDK to be installed even if you are not planning to use their platform.
+LIMP is Python based. LIMP requires Python 3.7 or later for it to work. LIMP depends completely on `MongoDB` as database of choice. Additionally, LIMP depends on number of popular Python libs.
 
 The current list of requirements is: https://github.com/masaar/limp/requirements.txt.
 
-LIMP provides easy to use CLI interface that also gives the developers the ability to install the dependencies of LIMP and the packages.
+LIMP provides easy to use CLI interface that also gives the developers the ability to install the dependencies of LIMP and the packages. Check out [Install Dependencies](/quick-start.md#install-dependencies) section of the Quick Start article to learn how to use this option.
