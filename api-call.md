@@ -22,18 +22,45 @@ Next is we explore the `query` object which is deemed the most essential object 
 ## Query Object
 The call `query` object is the most essential object. Although, you need to specify an `endpoint` to make any call, `query` is the object that allows you to get access to any specific data you need. The `query` object is a complex form of nested lists and objects with the following signature:
 ```typescript
-interface {
-	[attr: number]: queryStep | {
-		$search?: string;
-		$sort?: { [attr: string]: 1 | -1 };
-		$skip?: number;
-		$limit?: number;
-		$extn?: false | Array<string>;
-		$attrs?: Array<string>;
-		$group: Array<{ by: string; count: number; }>;
-		[attr: string]: { $not: any } | { $eq: any } | { $gt: number } | { $gte: number } | { $lt: number } | { $lte: number } | { $bet: [number, number] } | { $all: Array<any> } | { $in: Array<any> } | { $attrs: Array<string>; } | { $skip: false | Array<string>; } | queryStep | any;
-	}
+interface QueryStep {
+	$search?: string;
+	$sort?: {
+		[attr: string]: 1 | -1;
+	};
+	$skip?: number;
+	$limit?: number;
+	$extn?: false | Array<string>;
+	$attrs?: Array<string>;
+	$group?: Array<{
+		by: string;
+		count: number;
+	}>;
+	[attr: string]: {
+		$not: any;
+	} | {
+		$eq: any;
+	} | {
+		$gt: number | string;
+	} | {
+		$gte: number | string;
+	} | {
+		$lt: number | string;
+	} | {
+		$lte: number | string;
+	} | {
+		$bet: [number, number] | [string, string];
+	} | {
+		$all: Array<any>;
+	} | {
+		$in: Array<any>;
+	} | {
+		$attrs: Array<string>;
+	} | {
+		$skip: false | Array<string>;
+	} | Query | string | { [attr: string]: 1 | -1; } | number | false | Array<string>;
 }
+
+interface Query extends Array<QueryStep> {}
 ```
 `query` object uses lists to reflect logical `or` condition, and objects to reflect `and` condition. Following are samples of different queries:
 
