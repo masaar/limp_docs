@@ -1,8 +1,10 @@
+[Back to API Reference Index](./README.md)
+
 # Attrs Types
 Attrs Types are used to automate the process of data validation for LIMP apps. In most it's used with (calls `doc`)[/api/call.md#doc] to methods, but also can be used to validate (GET methods `query`)[/api/method.md#get-methods].
 
 ## Built-in Attrs Types
-LIMP has huge set of built-in Attrs Types that cover most of the data validation purposes. These Attrs Types can be customised for more spcific validation process.
+LIMP has huge set of built-in Attrs Types that cover most of the data validation purposes. These Attrs Types can be customised for more specific validation process.
 
 ### `any`
 An attr with this type means it can have any value, ultimately skipping type-check on it altogether.
@@ -38,34 +40,37 @@ Self-descriptive email type. Accepts a string that matches the regexp `r'[^@]+@[
 Self-descriptive phone type. Accepts a string that matches the regexp `r'\+[0-9]+'` in Python.
 
 #### `phone[CODE, CODE...,CODE]`
-Type `phone` allows developers to set specfic accepted codes for `phone` attr by appending comma-separated codes in square brackets. e.g. `phone[123,456,789,0]` matches any phone which has either of the codes `123`, `456`, `789` or `0`.
+Type `phone` allows developers to set specific accepted codes for `phone` attr by appending comma-separated codes in square brackets. e.g. `phone[123,456,789,0]` matches any phone which has either of the codes `123`, `456`, `789` or `0`.
 
 ### `uri:web`
-Self-descriptive web URI type. Accepts a string that matches the regexp `r'https?:\/\/(?:[\w\-\_]+\.)(?:\.?[\w]{2,})+$'` in Python.
+Self-descriptive web URI type. Accepts a string that matches the regexp `https?:\/\/(?:[\w\-\_]+\.)(?:\.?[\w]{2,})+$` in Python.
 
 ### `datetime`
-Self-descriptive datetime type. Accepts Python ISO format `datetime` value which matches the regexp `r'^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]{6})?$'`.
+Self-descriptive datetime type. Accepts Python ISO format `datetime` value which matches the regexp `^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]{6})?$`.
 
 ### `date`
-Self-descriptive date type. Accepts Python ISO format `date` value `r'^[0-9]{4}-[0-9]{2}-[0-9]{2}$'`.
+Self-descriptive date type. Accepts Python ISO format `date` value `^[0-9]{4}-[0-9]{2}-[0-9]{2}$`.
 
 ### `time`
-Self-descriptive time type. Accepts Python ISO format `time` value which matches the regexp `r'^[0-9]{2}:[0-9]{2}(:[0-9]{2}(\.[0-9]{6})?)?$'`.
+Self-descriptive time type. Accepts Python ISO format `time` value which matches the regexp `^[0-9]{2}:[0-9]{2}(:[0-9]{2}(\.[0-9]{6})?)?$`.
 
 ### `file`
 Self-descriptive file type. Accepts a Python `dict` that has the file attrs as required by LIMP which are: `name`, `size`, `type`, `lastModified` and `content`.
 
 #### `file[TYPE,TYPE...,TYPE]`
-Type `file` allows developers to specify list of accepted file MIME types for the attr by appending comma-separated list of MIME types in squeare brackets. e.g. `file[image/*,video/*]` to allow all files which are `image` and `video`, or `file[image/jpeg]` to allow only JPEG images.
+Type `file` allows developers to specify list of accepted file MIME types for the attr by appending comma-separated list of MIME types in square brackets. e.g. `file[image/*,video/*]` to allow all files which are `image` and `video`, or `file[image/jpeg]` to allow only JPEG images.
 
 ### `geo`
 A GeoJSON-compatible type. This is essentially for use with MongoDB `$geo` features.
 
-### `Options`
-Type `Options` is used to define set of options for the attr as Python Tuple. Any other value not from the tuple would be considered wrong value. e.g. `shipment` module with attr `status` can have the type tuple as `('at-warehouse', 'shipped', 'received', 'cancelled')`.
+### `Set`
+Type `Set` is used to define set of options for the attr as Python `Set`. Any other value not from the tuple would be considered wrong value. e.g. `Shipment` module with attr `status` can have the type `Set` as `{'at-warehouse', 'shipped', 'received', 'cancelled'}` to only accept either of the values supplied in the `Set`.
+
+### `Tuple`
+Type `Tuple` is used to define an attr accepting multiple types as Python `Tuple`. The attr value would be checked against all the supplied types and accept at first matching type. e.g. `Post` module with attr `attachment` can have the type `Tuple` as `('file[image/*,video/*]', 'geo')` to allow it to only accept attachment of either of the types supplier in the `Tuple`.
 
 ### `List`
-Type `List` is used to define list of other Attr Type. e.g. `blog` module, can have the `tag` attr set to `['str']` to flag that it accepts list of strings. You can pass more than one type in the list to allow multiple types.
+Type `List` is used to define list of other Attr Type. e.g. `Blog` module, can have the `tag` attr set to `['str']` to flag that it accepts list of strings. You can pass more than one type in the list to allow multiple types.
 
 ### `attrs`
 Type `attrs` accepts Python `dict`. This is used when you need complex data types of your definition. Developers would have to type-check attrs set to `attrs` on their own.
@@ -75,7 +80,7 @@ Type `Dict` matches native Python `dict` type. You can use this as a value if yo
 
 
 ## App-specific Attrs Types
-Developers can define LIMP apps-specific Attrs Types as part of (pacakges)[/api/package.md] (configs)[/api/config.md]. Attrs Types should go along (`types` Config Attr)[/api/config.md#types] as Python `dict`, with the keys being the Attrs Types, and values being Python `callables` that returns the value as-is or converted, or raises one of the [Attrs Types Exceptions](#attrs-types-exceptions).
+Developers can define LIMP apps-specific Attrs Types as part of (LIMP packages)[/api/package.md] (configs)[/api/config.md]. Attrs Types should go along (`types` Config Attr)[/api/config.md#types] as Python `dict`, with the keys being the Attrs Types, and values being Python `callables` that returns the value as-is or converted, or raises one of the [Attrs Types Exceptions](#attrs-types-exceptions).
 
 ## Attrs Types Exceptions
 The sequence of data validation and type-check in LIMP works using two functions located in `utils` Python module of LIMP. The functions are `validate_doc`, and `validate_attr`. At the event of any failure these functions would raise one of the three Attrs Types Exceptions:

@@ -1,3 +1,5 @@
+[Back to API Reference Index](./README.md)
+
 # Config
 Config in LIMP eco-system are the loaded configurations of the current LIMPd instance according to various [LIMPd CLI](/api/cli.md) run parameters.
 

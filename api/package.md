@@ -1,3 +1,5 @@
+[Back to API Reference Index](./README.md)
+
 # Package
 LIMP package is Python package that can be located in `modules` folder in LIMP root. The package-design structure in LIMP allows a developer to pack few modules under packages for reuse in different occasions. A LIMP package has three elements:
 1. [Config](#package-config): Every package in LIMP has to define a `config` method that returns LIMP [`Config`](/api/config.md) matching dict.
