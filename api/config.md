@@ -74,14 +74,8 @@ Python list of locales used by the package. The form of the locale used in LIMP 
 ### `locale`
 Default locale of the app. It should be one of the values passed in `locales`. Default `ar_AE`.
 
-### `admin_username`
-`ADMIN` username. Setting this value is a must to avoid security breaches and ignoring it would raise a runtime warning.  Default `__ADMIN`.
-
-### `admin_email`
-`ADMIN` email. Setting this value is a must to avoid security breaches and ignoring it would raise a runtime warning. Default `ADMIN@LIMP.MASAAR.COM`.
-
-### `admin_phone`
-`ADMIN` phone. Setting this value is a must to avoid security breaches and ignoring it would raise a runtime warning. Default `'+971500000000'`.
+### `admin_doc`
+`ADMIN` doc. Fully qualified user doc to be used for creating `ADMIN` user. Default `{}`.
 
 ### `admin_password`
 `ADMIN` password. Setting this value is a must to avoid security breaches and ignoring it would raise a runtime warning. Default `'__ADMIN'`.
@@ -93,13 +87,13 @@ Default locale of the app. It should be one of the values passed in `locales`. D
 `ANON` user privileges. These are the privileges that any anonymous user of the app would have. Learn more about privileges from the reference of [LIMP privileges](/api/privilege.md). Default `{}`.
 
 ### `user_attrs`
-...
+Python `dict` representing additional attrs to update [`User` LIMP module](../core/user.md) with. This `dict` should at least have one attr that is used as [`auth_attr`](../core/user.md#auth_attrs). Default `{}`.
 
 ### `user_auth_attrs`
-...
+Python `list` of `User` LIMP module to use as [`auth_attrs`](../core/user.md#auth_attrs). At least one `auth_attr` should be present. Default `[]`.
 
 ### `user_attrs_defaults`
-...
+Python `dict` representing value of [`User` LIMP module](../core/user.md#auth_attrs) `defaults` attr. Default `{}`.
 
 ### `groups`
 App-specific users groups to create. This is a list of docs, each representing a group. Specifying `_id` of the group docs is a must. Default `[]`.

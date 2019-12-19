@@ -18,7 +18,7 @@ Let's try and write a test for our `limp-sample-app` from [quick start](/quick-s
 			'step':'call',
 			'module':'staff',
 			'method':'create',
-			'query':{},
+			'query':[],
 			'doc':{
 				'photo':{'__attr':'file'},
 				'name':{
@@ -49,8 +49,8 @@ First thing to notice is the form of of the test. It's a list. The list allows u
 1. **`step`**: This is the step type. Here we have a `call` step, which means we are testing a call. Other types are: `test`, `auth` and `signout`, which we would come to mention in a bit.
 2. **`module`**: For the `call` step you need to define the `module` your method of test choice is on.
 3. **`method`**: Self-descriptive the method of test choice.
-4. **`query`**: Self-descriptive call `query`, since we are testing a `create` operation here, we aren't having any `query` to pass.
-5. **`doc`**: Self-descriptive call `doc`, since we are testing a `create` operation here, we have all the fun go on this attr. We would talk more about it.
+4. **`query`**: Self-descriptive call `query`, since we are testing a `create` operation here, we aren't having any `query` to pass. This attr is optional and not required when not having an actual value.
+5. **`doc`**: Self-descriptive call `doc`, since we are testing a `create` operation here, we have all the fun go on this attr. We would talk more about it.  This attr is optional and not required when not having an actual value.
 6. **`acceptance`**: The mother of all tests attrs. Universally. This is the measurements LIMP Test object matches with the results from the call in order to know whether the test had failed or passed. You can set unlimited number of acceptance measurements here, and the test would only be considered passed if all of the acceptance measurements are matching the results.
 
 The attrs `step`, `module`, and `method` are simple and don't require verbose explanation. Attr `query` is a regular call `query` that you can append here as-is and expect it to work without any issues, but we are keeping it empty since our `create` operation doesn't need any. Attr `doc` is having similar structure to what we have experienced in [quick start guide](/quick-start.md) when creating a staff. We even have all of the locale attrs having both the Arabic and English values. But, one attr is having something exceptional--The `doc` attr `photo` is having the value set to `{'__attr':'file'}`. This is one of the tests workflow amazing features. It allows you to generate values for the call `doc` without the need to statically define them, this is helpful when you want to repeat some test few times but every time with different value. Another good use case is files definition. It could be a little hectic to define a file as part of the call because of the number of attrs a LIMP file type requires, which an easy to remember generator makes it easier to write tests and update them.
@@ -98,7 +98,7 @@ It's clear why the test had failed. We attempted calling the method as `ANON` us
 	'step':'auth',
 	'var':'email',
 	'val':'ADMIN@LIMP.MASAAR.COM',
-	'hash':'eyJoYXNoIjpbImVtYWlsIiwiQURNSU5ATElNUC5NQVNBQVIuQ09NIiwiX19BRE1JTiJdfQ'
+	'hash':'eyJoYXNoIjpbImVtYWlsIiwiQURNSU5ATElNUC5NQVNBQVIuQ09NIiwiX19BRE1JTiIsIl9fQU5PTl9UT0tFTl9mMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTIiXX0'
 }
 ```
 The `auth` step has the following attrs:
@@ -123,8 +123,6 @@ Now, let's test the `read` operation. We can do the same by writing a test like 
 		'step':'call',
 		'module':'staff',
 		'method':'read',
-		'query':{},
-		'doc':{},
 		'acceptance':{
 			'status':200,
 			'args.count':1
@@ -196,8 +194,6 @@ Similar to the purpose of `auth` step, `signout` allows developers to signout fr
 		'step':'call',
 		'module':'staff',
 		'method':'read',
-		'query':{},
-		'doc':{},
 		'acceptance':{
 			'status':200,
 			'args.count':1
@@ -232,8 +228,6 @@ Let's up our game a little. What about attempting to create two staff docs and t
 		'step':'call',
 		'module':'staff',
 		'method':'read',
-		'query':{},
-		'doc':{},
 		'acceptance':{
 			'status':200,
 			'args.count':2
@@ -281,10 +275,9 @@ To fiddle with them, let's decide that rather than testing, in `staff-read` test
 	'step':'call',
 	'module':'staff',
 	'method':'read',
-	'query':{
+	'query':[{
 		'_id':{'val':'$__steps:0.steps:1.results.args.docs:0._id'}
-	},
-	'doc':{},
+	}],
 	'acceptance':{
 		'status':200,
 		'args.count':1
