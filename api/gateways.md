@@ -1,7 +1,7 @@
 [Back to API Reference Index](./README.md)
 
 # Gateways
-Gateways are methods available in LIMP eco-system for use by [modules](./module.md) as well as [jobs](./jobs.md). The best example of a gateway is access to external communication and messaging service. Starting API v5.8, [Gateways Workflow](../workflows/gateways-workflow.md) was introduced to allow developers to extend the available gateways.
+Gateways are methods available in LIMP eco-system for use by [modules](./module.md) as well as [jobs](./jobs.md). The best example of a gateway is access to external communication and messaging service. Starting APIv5.8, [Gateways Workflow](../workflows/gateways-workflow.md) was introduced to allow developers to extend the available gateways.
 
 ## `Gateway`
 `Gateway` controller is available for importing across LIMP eco-system. The controller is the accessor for gateways, whether built-in or third-party.

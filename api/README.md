@@ -3,7 +3,7 @@
 # API Reference
 This section of the docs gives detailed description of different areas of LIMP which developers might interact with when developing LIMP apps.
 
-* [Attrs Types](./attrs-types.md)
+* [ATTR](./ATTR.md)
 * [Call](./call.md)
 * [Config](./config.md)
 * [Gateways](./gateways.md)
