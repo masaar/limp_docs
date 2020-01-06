@@ -7,10 +7,13 @@
   * `_id` of `User` doc the doc belongs to.
   * Type: `<ATTR:ID,{}>`
 * var:
+  * Name of the setting. This is unique for every `user` in the module.
   * Type: `<ATTR:STR,{'pattern': None}>`
 * val:
+  * Value of the setting.
   * Type: `<ATTR:ANY,{}>`
 * type:
+  * Type of the setting. This sets whether setting is global, or belong to user, and whether use can update it or not.
   * Type: `<ATTR:LITERAL,{'literal': ['global', 'user', 'user_sys']}>`
 ## Attrs Diff: True
 ## Methods
