@@ -9,3 +9,4 @@ LIMP Core package is the package that provides the basic functionalities of a LI
 * [Setting](./setting.md)
 * [Diff](./diff.md)
 * [Realm](./realm.md)
+* [Analytic](./analytic.md)
