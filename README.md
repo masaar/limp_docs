@@ -1,7 +1,7 @@
 # LIMP Docs
 This repo contains the docs of [LIMP](https://github.com/masaar/limp), the rapid app development framework.
 
-> The docs currently refer to LIMP API v5.8. If you are using older API levels, or newer make sure to check corresponding docs to the app API level.
+> The docs currently refer to LIMP APIv6.0. If you are using older API levels, or newer make sure to check corresponding docs to the app API level.
 
 > ⚠ LIMP Docs are still, in large, a WIP
 

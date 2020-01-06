@@ -3,24 +3,28 @@
 # CLI Interface
 LIMPd is your one-stop script in LIMP ecosystem. It allows you to [install dependencies](/dependencies.md), [test your packages](/test.md), and of course run your app with highly config runtime command line args. Full reference to usage of LIMP CLI interface:
 ```
-usage: limpd.py [-h] [--version] [--install-deps] [--env ENV] [--debug] [--log] [--packages PACKAGES] [-p PORT]
-                [--test TEST] [--test-flush] [--test-force] [--test-env] [--test-breakpoint] [--test-collections]
+usage: limpd.py [-h] [--version] [--install-deps] [--install-user] [--env ENV] [--debug] [--log]
+                [--packages [PACKAGES [PACKAGES ...]]] [-p PORT] [--test TEST] [--test-skip-flush] [--test-force]
+                [--test-env] [--test-breakpoint] [--test-collections] [--generate-ref]
 
 optional arguments:
   -h, --help            show this help message and exit
   --version             Show LIMP version and exit
   --install-deps        Install dependencies for LIMP and packages
+  --install-user        Install dependencies with `--user` option
   --env ENV             Choose specific env
   --debug               Enable debug mode
   --log                 Enable debug mode and log all debug messages to log file
-  --packages PACKAGES   List of packages separated by commas to be loaded
+  --packages [PACKAGES [PACKAGES ...]]
+                        List of packages separated by commas to be loaded
   -p PORT, --port PORT  Set custom port [default 8081]
   --test TEST           Run specified test
-  --test-flush          Flush previous test data collections
+  --test-skip-flush     Skip flushing previous test data collections
   --test-force          Force running all test steps even if one is failed
   --test-env            Run tests on selected env rather than sandbox env
-  --test-breakpoint     Create debugger breakpoint upon failure of test.
-  --test-collections    Enable Test Collections Mode.
+  --test-breakpoint     Create debugger breakpoint upon failure of test
+  --test-collections    Enable Test Collections Mode
+  --generate-ref        Generate API reference for loaded packages
 ```
 
 ## Using Environment Variables
