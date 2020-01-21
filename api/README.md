@@ -14,4 +14,5 @@ This section of the docs gives detailed description of different areas of LIMP w
 * [Privilege](./privilege.md)
 * [Realm](./realm.md)
 * [Request](./request.md)
-* [Test](./test.md)
+* [Tests](./tests.md)
+* [l10n](./l10n.md)
