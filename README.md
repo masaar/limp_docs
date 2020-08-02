@@ -1,3 +1,5 @@
+> LIMP is now Nawah and moved to: https://github.com/nawah-io/nawah_docs!
+
 # LIMP Docs
 This repo contains the docs of [LIMP](https://github.com/masaar/limp), the rapid app development framework.
 
